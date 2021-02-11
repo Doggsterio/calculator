@@ -7,7 +7,7 @@
 
 typedef struct string_ {
     char str[SIZE];
-};
+}string;
 
 int cal(char str[])
 {
