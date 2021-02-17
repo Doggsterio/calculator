@@ -13,6 +13,7 @@ typedef struct variable {
     char name[20];
     strings original;
     strings polish;
+    float res;
 }variables;
 
 int prior(int symb)
@@ -225,7 +226,9 @@ int main(){
         }
         curva++;
     }
-    printf("%s", var[0].polish.str);
+    for (int i = 0; i < curva; i++) {
+        printf("%s\n", var[i].polish.str);
+    }
     /* for (int i = 0; i < strlen(polish) - 1; i++)
      {
          if (polish[i] >= '0' && polish[i] <= '9')
