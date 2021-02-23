@@ -29,6 +29,7 @@ int prior(int symb)
     case'/':
         return 2;
     case'^':
+    case '~':
         return 3;
     }
     return 3;
@@ -160,6 +161,7 @@ double calculate(double stack[SIZE], char temp[SIZE], int cur)
         break;
     case '^':
         return pow(x, y);
+        break;
     }
 }
 
@@ -246,7 +248,7 @@ int main()
                 }
                 cur = pop(stack, cur);
             }
-            else if(strcmp(buff,"+") == 0 || strcmp(buff, "-") == 0 || strcmp(buff, "*") == 0 || strcmp(buff, "/") == 0 || strcmp(buff, "^") == 0) {
+            else if(strcmp(buff,"+") == 0 || strcmp(buff, "-") == 0 || strcmp(buff, "*") == 0 || strcmp(buff, "/") == 0 || strcmp(buff, "^") == 0 || strcmp(buff, "~") == 0) {
                 if (empty(stack, cur) == 1) {
                     cur = push(stack, cur, buff);
                 }
@@ -322,6 +324,10 @@ int main()
                 stack1[cur - 2] = calculate(stack1, temp, cur);
                 cur--;
             }
+            else if (strcmp(temp, "~") == 0)
+            {
+                stack1[cur - 1] = -stack1[cur - 1];
+            }
             else
             {
                 stack1[cur] = variab(var, temp, curva);
@@ -336,10 +342,12 @@ int main()
         cnt = 0;
     }
 
-    for (int i = 0; i < curva; ++i)
-    {
-        fprintf(ans, "%s = %lf\n", var[i].name, var[i].res);
-    }
+    //for (int i = 0; i < curva; ++i)
+    //{
+    //    fprintf(ans, "%s = %lf\n", var[i].name, var[i].res);
+    //}
+
+    fprintf(ans, "Ответ: %s = %lf\n", var[0].name, var[0].res);
 
     fclose(fun);
     fclose(con);
